@@ -1,4 +1,4 @@
-package ParallelImplementation;
+package parallelImplementation;
 
 /* M. Kuttel 2023
  * Searcher class that lands somewhere random on the surfaces and 
