@@ -34,7 +34,7 @@ java -cp bin serialImplentation.MonteCarloMinimization  20000 20000 -10000  1000
 java -cp bin serialImplentation.MonteCarloMinimization  30000 30000 -15000  15000   -15000  15000   0.5
 java -cp bin serialImplentation.MonteCarloMinimization  100000 100000 -50000  50000   -50000  50000   0.2
 
-    find bin -name "*.class" -delete
+    
 else
     echo "Compilation failed. Check the source code for errors."
 fi
