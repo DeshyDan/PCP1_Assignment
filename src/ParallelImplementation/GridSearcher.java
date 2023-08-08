@@ -1,34 +1,54 @@
 package parallelImplementation;
 
-import java.util.concurrent.RecursiveAction;
+import java.util.Arrays;
+import java.util.concurrent.RecursiveTask;
 
-public class GridSearcher extends RecursiveAction {
+public class GridSearcher extends RecursiveTask<GridSearchResult> {
     private Search[] searches;
     private int numSearches;
     private int threshold;
-    private int start;
-    private int end;
 
-    public GridSearcher(Search[] searches, int numSearches, int threshold, int start, int end) {
+    private int localMin = Integer.MAX_VALUE;
+    private int min = Integer.MAX_VALUE;
+    private int finder = -1;
+
+    public GridSearcher(Search[] searches, int numSearches) {
         this.searches = searches;
         this.numSearches = numSearches;
-        this.start = start;
-        this.end = end;
 
     }
 
     @Override
-    protected void compute() {
-        if (numSearches < threshold) {
+    protected GridSearchResult compute() {
+
+        if (numSearches > threshold) {
+            for (int i = 0; i < numSearches; i++) {
+                localMin = searches[i].find_valleys();
+                if ((!searches[i].isStopped()) && (localMin < min)) {
+                    min = localMin;
+                    finder = i;
+                }
+            }
+
+            return new GridSearchResult(numSearches, localMin, finder);
 
         } else {
             int middle = searches.length / 2;
 
-            GridSearcher grid1 = new GridSearcher(searches, numSearches, threshold, start, middle);
-            GridSearcher grid2 = new GridSearcher(searches, numSearches, threshold, middle, end);
-            invokeAll(grid1, grid2);
+            Search[] leftSearch = Arrays.copyOfRange(searches, 0, middle);
+            Search[] rightSearch = Arrays.copyOfRange(searches, middle, searches.length);
+            GridSearcher leftTask = new GridSearcher(leftSearch, leftSearch.length);
+            GridSearcher rightTask = new GridSearcher(rightSearch, rightSearch.length);
+
+            invokeAll(leftTask, rightTask);
+
+            min = Math.min(leftTask.min, rightTask.min);
+            finder = leftTask.min < rightTask.min ? leftTask.finder : rightTask.finder;
+
+            return new GridSearchResult(numSearches, localMin, finder);
 
         }
+
     }
 
 }
