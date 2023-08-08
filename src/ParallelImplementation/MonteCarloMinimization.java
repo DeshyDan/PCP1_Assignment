@@ -14,7 +14,6 @@ public class MonteCarloMinimization {
         }
         int rows = Integer.parseInt(args[0]);
         int columns = Integer.parseInt(args[1]);
-        int threshold = Integer.parseInt(args[6]);
         double xmin = Double.parseDouble(args[2]);
         double xmax = Double.parseDouble(args[3]);
         double ymin = Double.parseDouble(args[4]);
@@ -31,16 +30,18 @@ public class MonteCarloMinimization {
             searches[i] = new Search(i + 1, rand.nextInt(rows), rand.nextInt(columns), terrain);
 
         tick();
-        int min = Integer.MAX_VALUE;
-        int localMin = Integer.MAX_VALUE;
+        // int min = Integer.MAX_VALUE;
+        // int localMin = Integer.MAX_VALUE;
         int finder = -1;
 
-        GridSearcher gridSearch = new GridSearcher(searches, numSearches, threshold, 0, numSearches);
+        GridSearcher gridSearch = new GridSearcher(searches, numSearches );
         ForkJoinPool pool = new ForkJoinPool();
-        pool.invoke(gridSearch);
-
+        var result= pool.invoke(gridSearch);
         tock();
 
+        numSearches = result.numSearches;
+        int min = result.localMin;
+        finder = result.finder;
 
         System.out.printf("Run parameters\n");
         System.out.printf("\t Rows: %d, Columns: %d\n", rows, columns);

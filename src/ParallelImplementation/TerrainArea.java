@@ -1,9 +1,6 @@
 package parallelImplementation;
 
-import java.lang.Math.*;
-
 import parallelImplementation.Search.Direction;
-
 
 public class TerrainArea {
 
@@ -54,7 +51,7 @@ public class TerrainArea {
 			return heights[x][y]; // don't recalculate if done before
 		}
 		/* Calculate the coordinates of the point in the ranges */
-		double x_coord = xmin + ((xmax - xmin) / rows) * x; // tells us how far along the x axis we are in the grid 
+		double x_coord = xmin + ((xmax - xmin) / rows) * x; // tells us how far along the x axis we are in the grid
 		double y_coord = ymin + ((ymax - ymin) / columns) * y;
 		/* Compute function value */
 		double value = -2 * Math.sin(x_coord) * Math.cos(y_coord / 2.0) + Math.log(Math.abs(y_coord - Math.PI * 2));
@@ -62,12 +59,13 @@ public class TerrainArea {
 		// **** NB Rosenbrock function below can be used instead for validation ****
 		/*
 		 * double tmp = y_coord-Math.pow(x_coord,2);
-		  tmp=100.0*Math.pow(tmp,2);
-		  double tmp2=Math.pow(1-x_coord,2);
-		  double value = tmp2+tmp;
-		 
-
-		/* Transform to fixed point precision */
+		 * tmp=100.0*Math.pow(tmp,2);
+		 * double tmp2=Math.pow(1-x_coord,2);
+		 * double value = tmp2+tmp;
+		 * 
+		 * 
+		 * /* Transform to fixed point precision
+		 */
 		int fixed_point = (int) (PRECISION * value);
 		heights[x][y] = fixed_point;
 		grid_points_evaluated++;// keep count
@@ -80,15 +78,16 @@ public class TerrainArea {
 		int height;
 		int local_min = get_height(x, y);
 
-		
-		if (x > 0) {// checks if the current position has a neighbour to the left that has a height less than the current position 
-			height = get_height(x - 1, y); 
+		if (x > 0) {// checks if the current position has a neighbour to the left that has a height
+					// less than the current position
+			height = get_height(x - 1, y);
 			if (height < local_min) {
 				local_min = height;
 				climb_direction = Direction.LEFT;
 			}
 		}
-		if (x < (rows - 1)) { // checks if the current position has a neighbour to the right that has a height less than the current position
+		if (x < (rows - 1)) { // checks if the current position has a neighbour to the right that has a height
+								// less than the current position
 
 			height = get_height(x + 1, y);
 			if (height < local_min) {
@@ -96,14 +95,16 @@ public class TerrainArea {
 				climb_direction = Direction.RIGHT;
 			}
 		}
-		if (y > 0) { // checks if the current position has a neighbour above that has a height less than the current position
+		if (y > 0) { // checks if the current position has a neighbour above that has a height less
+						// than the current position
 			height = get_height(x, y - 1);
 			if (height < local_min) {
 				local_min = height;
 				climb_direction = Direction.UP;
 			}
 		}
-		if (y < (columns - 1)) { // checks if the current position has a neighbour below that has a height less than the current position
+		if (y < (columns - 1)) { // checks if the current position has a neighbour below that has a height less
+									// than the current position
 			height = get_height(x, y + 1);
 			if (height < local_min) {
 				local_min = height;
