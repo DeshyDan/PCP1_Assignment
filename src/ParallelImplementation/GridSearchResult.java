@@ -1,9 +1,9 @@
 package parallelImplementation;
 
 public class GridSearchResult {
-    public static int numSearches;
-    public static int localMin;
-    public static int finder;
+    public  int numSearches;
+    public  int localMin;
+    public  int finder;
 
     public GridSearchResult(int numSearches, int localMin, int finder){
         this.numSearches = numSearches;
