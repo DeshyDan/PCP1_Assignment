@@ -25,16 +25,15 @@ java -cp bin serialImplentation.MonteCarloMinimization  4200 4200 -2100  2100   
 java -cp bin serialImplentation.MonteCarloMinimization  5000 5000 -2500  2500   -2500  2500   0.7
 java -cp bin serialImplentation.MonteCarloMinimization  6000 6000 -3000  3000   -3000  3000   0.6
 java -cp bin serialImplentation.MonteCarloMinimization  7000 7000 -3500  3500   -3500  3500   0.5
-
 java -cp bin serialImplentation.MonteCarloMinimization  8000 8000 -4000  4000   -4000  4000   0.4
 java -cp bin serialImplentation.MonteCarloMinimization  9000 9000 -4500  4500   -4500  4500   0.3
 java -cp bin serialImplentation.MonteCarloMinimization  10000 10000 -5000  5000   -5000  5000   0.2
-java -cp bin serialImplentation.MonteCarloMinimization  11000 11000 -5500  5500   -5500  5500   0.1
-java -cp bin serialImplentation.MonteCarloMinimization  12000 12000 -6000  6000   -6000  6000   0.5
-java -cp bin serialImplentation.MonteCarloMinimization  13000 13000 -6500  6500   -6500  6500   0.5
-java -cp bin serialImplentation.MonteCarloMinimization  20000 20000 -10000  10000   -10000  10000   0.5
-java -cp bin serialImplentation.MonteCarloMinimization  30000 30000 -15000  15000   -15000  15000   0.5
-java -cp bin serialImplentation.MonteCarloMinimization  100000 100000 -50000  50000   -50000  50000   0.2
+# java -cp bin serialImplentation.MonteCarloMinimization  11000 11000 -5500  5500   -5500  5500   0.1
+# java  -Xms512m -Xmx4g -cp bin serialImplentation.MonteCarloMinimization  12000 12000 -6000  6000   -6000  6000   0.5
+# java -d64 -Xms512m -Xmx4g -cp bin serialImplentation.MonteCarloMinimization  13000 13000 -6500  6500   -6500  6500   0.5
+# java -d64 -Xms512m -Xmx4g -cp bin serialImplentation.MonteCarloMinimization  20000 20000 -10000  10000   -10000  10000   0.5
+# java -d64 -Xms512m -Xmx4g-cp bin serialImplentation.MonteCarloMinimization  30000 30000 -15000  15000   -15000  15000   0.5
+# java -d64 -Xms512m -Xmx4g -cp bin serialImplentation.MonteCarloMinimization  100000 100000 -50000  50000   -50000  50000   0.2
 
     
 else

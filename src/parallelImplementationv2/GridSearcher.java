@@ -1,4 +1,4 @@
-package parallelImplementation;
+package parallelImplementationv2;
 
 import java.util.Arrays;
 import java.util.concurrent.RecursiveTask;

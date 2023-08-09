@@ -1,6 +1,6 @@
-package parallelImplementation;
+package parallelImplementationv2;
 
-import parallelImplementation.Search.Direction;
+import parallelImplementationv2.Search.Direction;
 
 public class TerrainArea {
 

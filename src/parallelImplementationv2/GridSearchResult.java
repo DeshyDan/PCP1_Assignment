@@ -1,4 +1,4 @@
-package parallelImplementation;
+package parallelImplementationv2;
 
 public class GridSearchResult {
     public  int numSearches;
