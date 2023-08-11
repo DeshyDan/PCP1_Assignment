@@ -1,4 +1,4 @@
-package parallelImplementationv2;
+package parallelImplementation;
 
 /* M. Kuttel 2023
  * Searcher class that lands somewhere random on the surfaces and 
@@ -56,7 +56,7 @@ public class Search {
 				// The lowest height is below the current position
 					pos_col = pos_col + 1;
 					break;
-			}
+			} 
 		}
 		stopped = true;
 		return height;
