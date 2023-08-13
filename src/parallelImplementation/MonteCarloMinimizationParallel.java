@@ -3,7 +3,7 @@ package parallelImplementation;
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
 
-public class MonteCarloMinimization {
+public class MonteCarloMinimizationParallel {
     private static long startTime = 0;
     private static long endTime = 0;
 
@@ -25,9 +25,9 @@ public class MonteCarloMinimization {
         // initialize
         TerrainArea terrain = new TerrainArea(rows, columns, xmin, xmax, ymin, ymax);
         int numSearches = (int) (rows * columns * searches_density);
-        Search[] searches = new Search[numSearches];
+        SearchParallel[] searches = new SearchParallel[numSearches];
         for (int i = 0; i < numSearches; i++)
-            searches[i] = new Search(i + 1, rand.nextInt(rows), rand.nextInt(columns), terrain);
+            searches[i] = new SearchParallel(i + 1, rand.nextInt(rows), rand.nextInt(columns), terrain);
 
         tick();
         // int min = Integer.MAX_VALUE;

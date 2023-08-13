@@ -4,15 +4,15 @@ import java.util.Arrays;
 import java.util.concurrent.RecursiveTask;
 
 public class GridSearcher extends RecursiveTask<Integer[]> {
-    private Search[] searches;
+    private SearchParallel[] searches;
     private int numSearches;
-    private int threshold = 6_125_000;
+    private int threshold = 3000;
 
     private int localMin = Integer.MAX_VALUE;
     private int min ;
     private int finder;
 
-    public GridSearcher(Search[] searches, int numSearches) {
+    public GridSearcher(SearchParallel[] searches, int numSearches) {
         this.searches = searches;
         this.numSearches = numSearches;
         this.min = Integer.MAX_VALUE;
@@ -37,8 +37,8 @@ public class GridSearcher extends RecursiveTask<Integer[]> {
         } else {
             int middle = searches.length / 2;
 
-           Search[] leftSearch = Arrays.copyOfRange(searches, 0, middle);
-           Search[]  rightSearch = Arrays.copyOfRange(searches, middle, searches.length);
+           SearchParallel[] leftSearch = Arrays.copyOfRange(searches, 0, middle);
+           SearchParallel[]  rightSearch = Arrays.copyOfRange(searches, middle, searches.length);
            GridSearcher leftTask = new GridSearcher(leftSearch, leftSearch.length);
            GridSearcher  rightTask = new GridSearcher(rightSearch, rightSearch.length);
 
