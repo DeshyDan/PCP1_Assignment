@@ -44,8 +44,13 @@ public class GridSearcher extends RecursiveTask<Integer[]> {
 
             invokeAll(leftTask, rightTask);
 
-            min = Math.min(leftTask.min, rightTask.min);
-            finder = leftTask.min < rightTask.min ? leftTask.finder : rightTask.finder;
+          if(leftTask.min < rightTask.min){
+              min = leftTask.min;
+              finder = leftTask.finder;
+          }else{
+              min = rightTask.min;
+               finder - rightTask.finder
+          }
 
             return new Integer[]{numSearches, min , finder};
 
