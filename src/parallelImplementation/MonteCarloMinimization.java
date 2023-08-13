@@ -1,4 +1,4 @@
-package parallelImplementationv2;
+package parallelImplementation;
 
 import java.util.Random;
 import java.util.concurrent.ForkJoinPool;
@@ -39,9 +39,9 @@ public class MonteCarloMinimization {
         var result= pool.invoke(gridSearch);
         tock();
 
-        numSearches = result.numSearches;
-        int min = result.localMin;
-        finder = result.finder;
+        numSearches = result[0];
+        int min = result[1];
+        finder = result[2];
 
         System.out.printf("Run parameters\n");
         System.out.printf("\t Rows: %d, Columns: %d\n", rows, columns);

@@ -1,9 +1,9 @@
-package parallelImplementationv2;
+package parallelImplementation;
 
 import java.util.Arrays;
 import java.util.concurrent.RecursiveTask;
 
-public class GridSearcher extends RecursiveTask<GridSearchResult> {
+public class GridSearcher extends RecursiveTask<Integer[]> {
     private Search[] searches;
     private int numSearches;
     private int threshold = 6_125_000;
@@ -20,7 +20,7 @@ public class GridSearcher extends RecursiveTask<GridSearchResult> {
     }
 
     @Override
-    protected GridSearchResult compute() {
+    protected Integer[] compute() {
      
         if (numSearches < threshold) {
             for (int i = 0; i < numSearches; i++) {
@@ -31,7 +31,8 @@ public class GridSearcher extends RecursiveTask<GridSearchResult> {
                 }
             }
 
-            return new GridSearchResult(numSearches,min, finder);
+                        return new Integer[]{numSearches, min , finder};
+
 
         } else {
             int middle = searches.length / 2;
@@ -43,25 +44,17 @@ public class GridSearcher extends RecursiveTask<GridSearchResult> {
 
             invokeAll(leftTask, rightTask);
 
-            min = Math.min(leftTask.min, rightTask.min);
-            finder = leftTask.min < rightTask.min ? leftTask.finder : rightTask.finder;
+          if(leftTask.min < rightTask.min){
+              min = leftTask.min;
+              finder = leftTask.finder;
+          }else{
+              min = rightTask.min;
+               finder = rightTask.finder;
+          }
 
-            return new GridSearchResult(numSearches, min, finder);
+            return new Integer[]{numSearches, min , finder};
 
         }
-//         if (leftSearch != null && rightSearch != null && leftTask != null && rightTask != null) {
-//             min = Math.min(leftTask.min, rightTask.min);
-//                         finder = leftTask.min < rightTask.min ? leftTask.finder : rightTask.finder;
-
-//             // if (leftTask.min < rightTask.min) {
-//             //     finder = leftTask.finder;
-//             // } else {
-//             //     finder = rightTask.finder;
-//             // }
- 
-//         }
-// return new GridSearchResult(numSearches, min, finder);
-
 
     }
 
