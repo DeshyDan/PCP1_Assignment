@@ -49,7 +49,7 @@ public class GridSearcher extends RecursiveTask<Integer[]> {
               finder = leftTask.finder;
           }else{
               min = rightTask.min;
-               finder - rightTask.finder
+               finder = rightTask.finder;
           }
 
             return new Integer[]{numSearches, min , finder};
